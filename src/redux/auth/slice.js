@@ -13,7 +13,9 @@ const handlePending = (state) => {
 const handleAuthFulfilled = (state, { payload }) => {
 	state.isLoading = false
 	state.error = ''
-	state.access_token = payload.access_token
+	state.access_token = payload.token
+	state.profile.name = payload.user.name
+	state.profile.email = payload.user.email
 }
 
 const handleError = (state, action) => {
@@ -38,6 +40,7 @@ const authSlice = createSlice({
 			state.profile.email = ''
 			state.error = ''
 			state.access_token = ''
+			
 		},
 	},
 	extraReducers: (builder) => {

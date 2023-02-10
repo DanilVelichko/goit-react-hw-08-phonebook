@@ -1,32 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Form, Input } from 'antd';
 import { signInUser } from 'services/auth-service/auth-service';
-import { toast } from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
-import { authThunk } from 'redux/auth/thunk';
+import { useDispatch, useSelector } from 'react-redux';
+import { authThunk, profileThunk } from 'redux/auth/thunk';
+
+import { useNavigate } from 'react-router-dom';
+import Notiflix from 'notiflix';
 
 const Registration = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onFinish = ({ name, email, password }) => {
     signInUser({
       name,
       email,
       password,
-    })
+    }).then(() => Notiflix.Notify.success('Registration successfull!'))
       .then(() => {
-        toast.success('Create user successfully');
         dispatch(authThunk({ name, email }))
           .unwrap()
-          .catch(() => toast.error('Oops... some error'));
+          .catch(() => Notiflix.Notify.error('Syncronization went wrong'));
       })
-      .catch(error => toast.error(error.response.data.message));
-
-    console.log('Success:', name, email, password);
+      .then(() => navigate('/phonebook'))
+      .catch(error => console.log(error.response.data.message));
   };
 
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
+    Notiflix.Notify.error('Something went wrong')
   };
 
   return (

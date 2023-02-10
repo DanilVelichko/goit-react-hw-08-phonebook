@@ -5,10 +5,10 @@ import {
 } from '../../services/auth-service/auth-service';
 
 export const authThunk = createAsyncThunk(
-  'users/login',
+  'auth/login',
   async (payload, { dispatch }) => {
     const data = await loginUser(payload);
-    console.log('user/login', data);
+    console.log('auth/login', data);
 
     dispatch(profileThunk());
     return data;

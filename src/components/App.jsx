@@ -7,16 +7,14 @@ import {
   deleteContact,
   fetchContacts,
 } from 'redux/contacts/operations';
-import {
-  selectContacts,
-  selectFilter,
-} from 'redux/selectors';
+import { selectContacts, selectFilter } from 'redux/selectors';
 import Layout from './Layout/Layout';
 import { Routes, Route } from 'react-router-dom';
 import Phonebook from 'pages/Phonebook/Phonebook';
 import Login from 'pages/LogIn/Login';
 import Registration from 'pages/Registration/Registration';
-
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import PublicRoute from './PublicRoute/PublicRoute';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -63,16 +61,34 @@ const App = () => {
         <Route
           path="/phonebook"
           element={
-            <Phonebook
-              clickSubmit={formSubmitHandler}
-              onDataUpdate={handleDataUpdate}
-              arrContacts={filteredContacts}
-              onDeleteBtn={onDeleteBtn}
-            />
+            <PrivateRoute>
+              <Phonebook
+                clickSubmit={formSubmitHandler}
+                onDataUpdate={handleDataUpdate}
+                arrContacts={filteredContacts}
+                onDeleteBtn={onDeleteBtn}
+              />
+            </PrivateRoute>
           }
         />
-        <Route path='/login' element={<Login />} />
-        <Route path='/registration' element={<Registration/>} />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+   
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/registration"
+          element={
+            <PublicRoute>
+            
+              <Registration />
+            </PublicRoute>
+          }
+        />
       </Route>
     </Routes>
   );

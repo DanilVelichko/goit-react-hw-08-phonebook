@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button, Form, Input } from 'antd';
 import { signInUser } from 'services/auth-service/auth-service';
-import { useDispatch, useSelector } from 'react-redux';
-import { authThunk, profileThunk } from 'redux/auth/thunk';
+import { useDispatch} from 'react-redux';
+import { authThunk} from 'redux/auth/thunk';
 
 import { useNavigate } from 'react-router-dom';
 import Notiflix from 'notiflix';

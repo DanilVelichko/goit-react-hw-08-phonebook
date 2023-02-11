@@ -15,6 +15,7 @@ const ButtonAppBar = () => {
 
   const handleLogOut = () => {
     dispatch(logOutAction());
+    
   };
 
   return (

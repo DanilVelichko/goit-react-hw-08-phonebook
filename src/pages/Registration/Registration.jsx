@@ -17,11 +17,11 @@ const Registration = () => {
       email,
       password,
     }).then(() => Notiflix.Notify.success('Registration successfull!'))
-      .then(() => {
-        dispatch(authThunk({ name, email }))
-          .unwrap()
-          .catch(() => Notiflix.Notify.error('Syncronization went wrong'));
-      })
+      // .then(() => {
+      //   dispatch(authThunk({ name, email }))
+      //     .unwrap()
+      //     .catch(() => Notiflix.Notify.error('Syncronization went wrong'));
+      // })
       .then(() => navigate('/phonebook'))
       .catch(error => console.log(error.response.data.message));
   };

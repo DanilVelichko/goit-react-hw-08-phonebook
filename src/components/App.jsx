@@ -54,6 +54,7 @@ const App = () => {
   };
 
   useEffect(() => {
+    if (!isAuth) return;
     dispatch(fetchContacts());
   }, [isAuth, dispatch]);
 
@@ -77,8 +78,7 @@ const App = () => {
           path="/login"
           element={
             <PublicRoute>
-   
-              <Login />
+                <Login />
             </PublicRoute> 
           }
         />
@@ -86,7 +86,6 @@ const App = () => {
           path="/registration"
           element={
             <PublicRoute>
-            
               <Registration />
             </PublicRoute>
           }

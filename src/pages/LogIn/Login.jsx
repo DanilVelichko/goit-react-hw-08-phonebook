@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
-import { useDispatch} from 'react-redux';
-import { authThunk} from 'redux/auth/thunk';
+import { useDispatch } from 'react-redux';
+import { authThunk } from 'redux/auth/thunk';
 import { useNavigate } from 'react-router-dom';
 import Notiflix from 'notiflix';
 
@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onFinish = ({ email, password }) => {
-     dispatch(authThunk({ email, password }))
+    dispatch(authThunk({ email, password }))
       .unwrap()
       .then(() => Notiflix.Notify.success('Login successfull!'))
       .then(() => navigate('/phonebook'))
@@ -45,7 +45,6 @@ const Login = () => {
       <Form.Item
         label="Password"
         name="password"
-        autoComplete="current-password"
         rules={[{ required: true, message: 'Please input your password!' }]}
       >
         <Input.Password />

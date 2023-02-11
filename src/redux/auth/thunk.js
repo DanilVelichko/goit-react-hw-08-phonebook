@@ -8,8 +8,6 @@ export const authThunk = createAsyncThunk(
   'auth/login',
   async (payload, { dispatch }) => {
     const data = await loginUser(payload);
-    console.log('auth/login', data);
-
     dispatch(profileThunk());
     return data;
   }

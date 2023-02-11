@@ -15,7 +15,6 @@ const ButtonAppBar = () => {
 
   const handleLogOut = () => {
     dispatch(logOutAction());
-
   };
 
   return (
@@ -30,7 +29,7 @@ const ButtonAppBar = () => {
 
           {name.length > 0 ? (
             <>
-              <p> Hello, {name}!     </p>
+              <p> Hello, {name}! </p>
               <Button onClick={handleLogOut} color="inherit">
                 Log Out
               </Button>

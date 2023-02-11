@@ -1,12 +1,10 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
 import { signInUser } from 'services/auth-service/auth-service';
-// import { useDispatch} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Notiflix from 'notiflix';
 
 const Registration = () => {
-  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onFinish = ({ name, email, password }) => {
@@ -15,11 +13,6 @@ const Registration = () => {
       email,
       password,
     }).then(() => Notiflix.Notify.success('Registration successfull!'))
-      // .then(() => {
-      //   dispatch(authThunk({ name, email }))
-      //     .unwrap()
-      //     .catch(() => Notiflix.Notify.error('Syncronization went wrong'));
-      // })
       .then(() => navigate('/login'))
       .catch(error => console.log(error.response.data.message));
   };

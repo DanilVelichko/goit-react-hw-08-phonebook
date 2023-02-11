@@ -14,12 +14,14 @@ import Phonebook from 'pages/Phonebook/Phonebook';
 import Login from 'pages/LogIn/Login';
 import Registration from 'pages/Registration/Registration';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import {selectIsAuthenticated} from 'redux/selectors';
 import PublicRoute from './PublicRoute/PublicRoute';
 
 const App = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
+  const isAuth = useSelector(selectIsAuthenticated);
 
   const formSubmitHandler = data => {
     const matchNameInput = contacts.find(
@@ -53,7 +55,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchContacts());
-  }, [dispatch]);
+  }, [isAuth, dispatch]);
 
   return (
     <Routes>
@@ -77,7 +79,7 @@ const App = () => {
             <PublicRoute>
    
               <Login />
-            </PublicRoute>
+            </PublicRoute> 
           }
         />
         <Route

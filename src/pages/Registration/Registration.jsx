@@ -1,14 +1,12 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
 import { signInUser } from 'services/auth-service/auth-service';
-import { useDispatch} from 'react-redux';
-import { authThunk} from 'redux/auth/thunk';
-
+// import { useDispatch} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Notiflix from 'notiflix';
 
 const Registration = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onFinish = ({ name, email, password }) => {

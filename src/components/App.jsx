@@ -57,7 +57,7 @@ const App = () => {
 
   useEffect(() => {
     if (!isAuth) {
-    window.location.replace('/login')
+    window.location.replace('/')
       return;
     }
     dispatch(fetchContacts());

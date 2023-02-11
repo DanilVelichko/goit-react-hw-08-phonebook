@@ -57,7 +57,7 @@ const App = () => {
 
   useEffect(() => {
     if (!isAuth) {
-    window.location.replace('/')
+    window.location.replace('/goit-react-hw-08-phonebook/')
       return;
     }
     dispatch(fetchContacts());

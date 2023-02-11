@@ -22,7 +22,7 @@ const Registration = () => {
       //     .unwrap()
       //     .catch(() => Notiflix.Notify.error('Syncronization went wrong'));
       // })
-      .then(() => navigate('/phonebook'))
+      .then(() => navigate('/login'))
       .catch(error => console.log(error.response.data.message));
   };
 

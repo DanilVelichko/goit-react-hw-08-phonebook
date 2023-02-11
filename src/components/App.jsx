@@ -15,7 +15,9 @@ import Login from 'pages/LogIn/Login';
 import Registration from 'pages/Registration/Registration';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import {selectIsAuthenticated} from 'redux/selectors';
-import PublicRoute from './PublicRoute/PublicRoute';
+// import PublicRoute from './PublicRoute/PublicRoute';
+import Welcome from 'pages/Welcome/Welcome';
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -54,14 +56,20 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (!isAuth) return;
+    if (!isAuth) {
+    window.location.replace('/login')
+      return;
+    }
     dispatch(fetchContacts());
   }, [isAuth, dispatch]);
 
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route
+         {/* <PublicRoute> */}
+          <Route path="/" element={<Welcome />} />
+          {/* </PublicRoute> */}
+         <Route
           path="/phonebook"
           element={
             <PrivateRoute>
@@ -77,17 +85,17 @@ const App = () => {
         <Route
           path="/login"
           element={
-            <PublicRoute>
+            // <PublicRoute>
                 <Login />
-            </PublicRoute> 
+            // </PublicRoute> 
           }
         />
         <Route
           path="/registration"
           element={
-            <PublicRoute>
+            // <PublicRoute>
               <Registration />
-            </PublicRoute>
+            // </PublicRoute>
           }
         />
       </Route>

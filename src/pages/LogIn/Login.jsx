@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Form, Input } from 'antd';
 import { useDispatch } from 'react-redux';
 import { authThunk } from 'redux/auth/thunk';

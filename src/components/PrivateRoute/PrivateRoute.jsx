@@ -5,9 +5,9 @@ import React from 'react';
 
 const PrivateRoute = () => {
   const isAuth = useSelector(selectIsAuthenticated);
-  if (!isAuth) { return <Navigate to={'/login'} />; }
-  else 
-  return <Outlet/>
+  if (!isAuth) {
+    return <Navigate to={'/login'} />;
+  } else return <Outlet />;
 };
 
 export default PrivateRoute;

@@ -41,10 +41,12 @@ const Registration = () => {
       <Form.Item
         label="Name"
         name="name"
-        rules={[{
-          required: true,
-          message: 'Please input your username!'
-        }]}
+        rules={[
+          {
+            required: true,
+            message: 'Please input your username!',
+          },
+        ]}
       >
         <Input />
       </Form.Item>
@@ -66,10 +68,12 @@ const Registration = () => {
       <Form.Item
         label="Password"
         name="password"
-        rules={[{
-          required: true,
-          message: 'Please input your password!'
-        }]}
+        rules={[
+          {
+            required: true,
+            message: 'Please input your password!',
+          },
+        ]}
       >
         <Input.Password />
       </Form.Item>

@@ -1,4 +1,3 @@
-
 export const selectContacts = state => state.contacts.items;
 export const selectFilter = state => state.filter;
 export const selectIsLoading = state => state.contacts.isLoading;
@@ -11,4 +10,3 @@ export const selectIsAuthLoading = state => state.auth.isLoading;
 export const selectProfile = state => state.auth.profile;
 export const selectName = state => state.auth.profile.name;
 export const selectEmail = state => state.auth.profile.email;
-

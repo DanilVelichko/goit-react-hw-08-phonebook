@@ -31,16 +31,16 @@ const handleProfileFulfilled = (state, { payload }) => {
 
 const handleLogOutFullfilled = state => {
   state.isLoading = false;
-      state.profile.name = '';
-      state.profile.email = '';
-      state.error = '';
+  state.profile.name = '';
+  state.profile.email = '';
+  state.error = '';
   state.access_token = '';
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: { },
+  reducers: {},
   extraReducers: builder => {
     builder
       .addCase(authThunk.fulfilled, handleAuthFulfilled)
@@ -56,6 +56,5 @@ const authSlice = createSlice({
       );
   },
 });
-
 
 export const authReducer = persistReducer(persistConfig, authSlice.reducer);

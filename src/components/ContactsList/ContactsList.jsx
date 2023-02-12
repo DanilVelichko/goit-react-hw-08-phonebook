@@ -2,12 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import css from './ContactsList.module.css';
 import ContactsItem from 'components/ContactsItem/ContactsItem';
-import {
-  selectError,
-  selectIsLoading,
- 
-} from 'redux/selectors';
-import { useSelector} from 'react-redux';
+import { selectError, selectIsLoading } from 'redux/selectors';
+import { useSelector } from 'react-redux';
 
 const ContactsList = ({ arrContacts, onDeleteBtn }) => {
   const isLoading = useSelector(selectIsLoading);
@@ -25,8 +21,8 @@ const ContactsList = ({ arrContacts, onDeleteBtn }) => {
           />
         );
       })}
-     {isLoading && !error && <h4>Request in progress...</h4>} </ul>
- 
+      {isLoading && !error && <h4>Request in progress...</h4>}{' '}
+    </ul>
   );
 };
 
@@ -38,5 +34,6 @@ ContactsList.propTypes = {
       number: PropTypes.string.isRequired,
     })
   ),
+  onDeleteBtn: PropTypes.func.isRequired,
 };
 export default ContactsList;

@@ -4,6 +4,7 @@ import {
   addContacts,
   deleteContact,
 } from 'redux/contacts/operations';
+import { initialState } from './initialState';
 
 const extraActions = [fetchContacts, addContacts, deleteContact];
 const createExtraAct = type => extraActions.map(action => action[type]);
@@ -41,12 +42,6 @@ const handleRejected = (state, action) => {
   state.items = [];
 };
 
-const initialState = {
-  items: [],
-  isLoading: false,
-  error: null,
-};
-
 export const contactsSlice = createSlice({
   name: 'contacts',
   initialState: initialState,
@@ -58,7 +53,6 @@ export const contactsSlice = createSlice({
       .addCase('auth/logOutAction', handleLogOut)
       .addMatcher(isAnyOf(...createExtraAct('fulfilled')), handleFullfilled)
       .addMatcher(isAnyOf(...createExtraAct('pending')), handlePending)
-      .addMatcher(isAnyOf(...createExtraAct('rejected')), handleRejected)
-    
+      .addMatcher(isAnyOf(...createExtraAct('rejected')), handleRejected);
   },
 });

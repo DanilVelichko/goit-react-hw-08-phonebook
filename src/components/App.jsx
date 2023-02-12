@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // Pages
 import Login from 'pages/LogIn/Login';
@@ -46,6 +46,7 @@ const App = () => {
         <Route element={<PublicRoute />}>
           <Route path="/registration" element={<Registration />} />
         </Route>
+        <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
   );

@@ -5,9 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import Form from 'components/Form/Form';
 import Filter from 'components/Filter/Filter';
 // Redux
-import { selectContacts, selectFilter } from 'redux/selectors';
 import { addFilter } from 'redux/filter/sliceFilter';
 import { addContacts, deleteContact } from 'redux/contacts/operations';
+import { selectContacts, selectFilter } from 'redux/selectors';
 // Services
 import { Container } from 'components/App.styled';
 

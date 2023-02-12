@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 // Pages
 import Login from 'pages/LogIn/Login';
 import Welcome from 'pages/Welcome/Welcome';
@@ -27,7 +27,6 @@ const App = () => {
       dispatch(profileThunk());
       dispatch(fetchContacts());
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

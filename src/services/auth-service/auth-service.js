@@ -14,7 +14,7 @@ export const loginUser = async body => {
 
 export const getProfile = async () => {
   const { data } = await axiosInstance.get('users/current');
-console.log('Get profile',data)
+
   return data;
 };
 

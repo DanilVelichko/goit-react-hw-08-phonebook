@@ -5,7 +5,6 @@ import React from 'react';
 
 const PublicRoute = ({ children }) => {
   const isAuth = useSelector(selectIsAuthenticated);
-  
   if (isAuth) return <Navigate to={'/phonebook'} />;
   return React.cloneElement(children, { outlet: 'public' });
 };

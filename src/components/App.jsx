@@ -14,10 +14,11 @@ import Phonebook from 'pages/Phonebook/Phonebook';
 import Login from 'pages/LogIn/Login';
 import Registration from 'pages/Registration/Registration';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
-import {selectIsAuthenticated} from 'redux/selectors';
-// import PublicRoute from './PublicRoute/PublicRoute';
+import { selectIsAuthenticated } from 'redux/selectors';
+import PublicRoute from './PublicRoute/PublicRoute';
 import Welcome from 'pages/Welcome/Welcome';
-
+import { Navigate } from 'react-router-dom';
+import { profileThunk, authThunk } from 'redux/auth/thunk';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -56,20 +57,34 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (!isAuth) {
-    window.location.replace('/goit-react-hw-08-phonebook/')
-      return;
+    if (
+      !isAuth.length > 0 &&
+      window.location.pathname !== '/login' &&
+      window.location.pathname !== '/registration'
+    ) {
+      <Navigate to={'/'} />;
     }
-    dispatch(fetchContacts());
+    if (isAuth.length > 0 && window.location.pathname === '/phonebook') {
+      
+      dispatch(fetchContacts());
+      <Navigate to={'/phonebook'} />;
+    }
   }, [isAuth, dispatch]);
 
+ 
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-         {/* <PublicRoute> */}
-          <Route path="/" element={<Welcome />} />
-          {/* </PublicRoute> */}
-         <Route
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <Welcome />
+            </PublicRoute>
+          }
+        />
+
+        <Route
           path="/phonebook"
           element={
             <PrivateRoute>
@@ -85,17 +100,17 @@ const App = () => {
         <Route
           path="/login"
           element={
-            // <PublicRoute>
-                <Login />
-            // </PublicRoute> 
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
           }
         />
         <Route
           path="/registration"
           element={
-            // <PublicRoute>
+            <PublicRoute>
               <Registration />
-            // </PublicRoute>
+            </PublicRoute>
           }
         />
       </Route>

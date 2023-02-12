@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
 import { selectIsAuthenticated } from 'redux/selectors';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import React from 'react';
 
 const PrivateRoute = ({ children }) => {
-  const { pathname } = useLocation();
-  const isAuth = useSelector(selectIsAuthenticated);
+   const isAuth = useSelector(selectIsAuthenticated);
 
-  if (!isAuth) return <Navigate to={'/login'} state={pathname} />;
-  return children;
+  if (!isAuth) return <Navigate to={'/login'} />;
+  return React.cloneElement(children, { outlet: 'public' });
 };
 
 export default PrivateRoute;

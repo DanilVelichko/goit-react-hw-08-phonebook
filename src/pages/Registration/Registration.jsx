@@ -1,25 +1,28 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
 import { signInUser } from 'services/auth-service/auth-service';
-import { useNavigate } from 'react-router-dom';
 import Notiflix from 'notiflix';
+import { useDispatch } from 'react-redux';
+import { authThunk } from 'redux/auth/thunk';
 
 const Registration = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onFinish = ({ name, email, password }) => {
     signInUser({
       name,
       email,
       password,
-    }).then(() => Notiflix.Notify.success('Registration successfull!'))
-      .then(() => navigate('/login'))
+    })
+      .then(() => Notiflix.Notify.success('Registration successfull!'))
+      .then(() => dispatch(authThunk({ email, password })))
+      .unwrap()
       .catch(error => console.log(error.response.data.message));
   };
 
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
-    Notiflix.Notify.error('Something went wrong')
+    Notiflix.Notify.error('Something went wrong');
   };
 
   return (
@@ -60,7 +63,7 @@ const Registration = () => {
       <Form.Item
         label="Password"
         name="password"
-         rules={[{ required: true, message: 'Please input your password!' }]}
+        rules={[{ required: true, message: 'Please input your password!' }]}
       >
         <Input.Password />
       </Form.Item>

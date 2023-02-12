@@ -7,6 +7,7 @@ import {
 
 const extraActions = [fetchContacts, addContacts, deleteContact];
 const createExtraAct = type => extraActions.map(action => action[type]);
+
 const handleFetchContacts = (state, action) => {
   state.items = action.payload;
 };
@@ -18,6 +19,11 @@ const handleDeleteContact = (state, action) => {
     contact => contact.id === action.payload.id
   );
   state.items.splice(index, 1);
+};
+const handleLogOut = state => {
+  state.items = [];
+  state.isLoading = false;
+  state.error = null;
 };
 
 const handleFullfilled = state => {
@@ -49,8 +55,10 @@ export const contactsSlice = createSlice({
       .addCase(fetchContacts.fulfilled, handleFetchContacts)
       .addCase(addContacts.fulfilled, handleAddContacts)
       .addCase(deleteContact.fulfilled, handleDeleteContact)
+      .addCase('auth/logOutAction', handleLogOut)
       .addMatcher(isAnyOf(...createExtraAct('fulfilled')), handleFullfilled)
       .addMatcher(isAnyOf(...createExtraAct('pending')), handlePending)
-      .addMatcher(isAnyOf(...createExtraAct('rejected')), handleRejected);
+      .addMatcher(isAnyOf(...createExtraAct('rejected')), handleRejected)
+    
   },
 });

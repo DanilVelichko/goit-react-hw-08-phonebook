@@ -4,10 +4,11 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { logOutAction } from 'redux/auth/sliceAuth';
 import { selectName } from 'redux/selectors';
 import { useSelector, useDispatch} from 'react-redux';
 import { selectIsAuthenticated } from 'redux/selectors';
+import { logOutThunk } from 'redux/auth/thunk';
+
 
 
 const ButtonAppBar = () => {
@@ -16,7 +17,8 @@ const ButtonAppBar = () => {
   const isAuth = useSelector(selectIsAuthenticated);
   
   const handleLogOut = () => {
-    dispatch(logOutAction());
+    dispatch(logOutThunk());
+    
   };
 
   return (

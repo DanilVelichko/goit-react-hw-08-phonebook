@@ -1,35 +1,64 @@
 import { Container } from 'components/App.styled';
-import PropTypes from 'prop-types';
+import { addFilter } from 'redux/filter/sliceFilter';
+import { useMemo } from 'react';
 import { Suspense, lazy } from 'react';
 import Form from 'components/Form/Form';
 import Filter from 'components/Filter/Filter';
+import { selectContacts, selectFilter } from 'redux/selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  addContacts,
+  deleteContact,
+} from 'redux/contacts/operations';
 
 const ContactsList = lazy(() => import('components/ContactsList/ContactsList'));
 
-const Phonebook = ({ clickSubmit, onDataUpdate, arrContacts, onDeleteBtn }) => {
+const Phonebook = () => {
+  const dispatch = useDispatch();
+ const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
+
+  const formSubmitHandler = data => {
+    const matchNameInput = contacts.find(
+      contact => contact.name.toLowerCase() === data.name.toLowerCase()
+    );
+
+    if (matchNameInput) {
+      alert(data.name + ' is already in contacts.');
+    } else {
+      dispatch(addContacts(data));
+    }
+  };
+
+  const handleDataUpdate = input => {
+    dispatch(addFilter(input.currentTarget.value));
+  };
+
+  const filteredContacts = useMemo(() => {
+    if (filter !== '') {
+      return contacts.filter(contact =>
+        contact.name.toLowerCase().includes(filter.toLowerCase().trim())
+      );
+    } else {
+      return contacts;
+    }
+  }, [contacts, filter]);
+
+  const onDeleteBtn = id => {
+    dispatch(deleteContact(id));
+  };
+
   return (
     <Container>
-      <Form clickSubmit={clickSubmit} />
+      <Form clickSubmit={formSubmitHandler} />
 
-      <Filter onDataUpdate={onDataUpdate} />
+      <Filter onDataUpdate={handleDataUpdate} />
 
       <Suspense fallback={<div>Loading...</div>}>
-        <ContactsList arrContacts={arrContacts} onDeleteBtn={onDeleteBtn} />
+        <ContactsList arrContacts={filteredContacts} onDeleteBtn={onDeleteBtn} />
       </Suspense>
     </Container>
   );
 };
 
-Phonebook.propTypes = {
-  arrContacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
-  onDataUpdate: PropTypes.func.isRequired,
-  clickSubmit: PropTypes.func.isRequired,
-  onDeleteBtn: PropTypes.func.isRequired,
-};
 export default Phonebook;

@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   getProfile,
   loginUser,
+  logOutUser,
 } from '../../services/auth-service/auth-service';
 import { fetchContacts } from 'redux/contacts/operations';
 
@@ -18,4 +19,8 @@ export const authThunk = createAsyncThunk(
 
 export const profileThunk = createAsyncThunk('auth/profile', () => {
   return getProfile();
+});
+
+export const logOutThunk = createAsyncThunk('auth/logout', async () => {
+  await logOutUser();
 });

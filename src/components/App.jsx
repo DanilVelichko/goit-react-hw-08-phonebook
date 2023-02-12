@@ -14,7 +14,7 @@ import PrivateRoute from './PrivateRoute/PrivateRoute';
 import { profileThunk } from 'redux/auth/thunk';
 import { selectIsAuthenticated } from 'redux/selectors';
 import { fetchContacts } from 'redux/contacts/operations';
-//Services
+// Services
 import { setTokenAuth } from '../api/api';
 
 const App = () => {
@@ -27,44 +27,25 @@ const App = () => {
       dispatch(profileThunk());
       dispatch(fetchContacts());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route
-          path="/"
-          element={
-            <PublicRoute>
-              <Welcome />
-            </PublicRoute>
-          }
-        />
+        <Route element={<PublicRoute />}>
+          <Route path="/" element={<Welcome />} />
+        </Route>
 
-        <Route
-          path="/phonebook"
-          element={
-            <PrivateRoute>
-              <Phonebook />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <PublicRoute>
-              <Login />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/registration"
-          element={
-            <PublicRoute>
-              <Registration />
-            </PublicRoute>
-          }
-        />
+        <Route element={<PrivateRoute />}>
+          <Route path="/phonebook" element={<Phonebook />} />
+        </Route>
+        <Route element={<PublicRoute />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
+        <Route element={<PublicRoute />}>
+          <Route path="/registration" element={<Registration />} />
+        </Route>
       </Route>
     </Routes>
   );

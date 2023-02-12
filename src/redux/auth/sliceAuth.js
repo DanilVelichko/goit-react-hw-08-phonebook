@@ -1,8 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { initialState } from './initialState';
 import { authThunk, profileThunk, logOutThunk } from './thunk';
-
-import storage from 'redux-persist/lib/storage';
+import { persistConfig } from './persistConfig';
 import persistReducer from 'redux-persist/es/persistReducer';
 
 const handlePending = state => {
@@ -32,16 +31,16 @@ const handleProfileFulfilled = (state, { payload }) => {
 
 const handleLogOutFullfilled = state => {
   state.isLoading = false;
-  state.profile.name = '';
-  state.profile.email = '';
-  state.error = '';
+      state.profile.name = '';
+      state.profile.email = '';
+      state.error = '';
   state.access_token = '';
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: { },
   extraReducers: builder => {
     builder
       .addCase(authThunk.fulfilled, handleAuthFulfilled)
@@ -58,10 +57,5 @@ const authSlice = createSlice({
   },
 });
 
-const persistConfig = {
-  key: 'auth',
-  storage,
-  whitelist: ['access_token'],
-};
 
 export const authReducer = persistReducer(persistConfig, authSlice.reducer);

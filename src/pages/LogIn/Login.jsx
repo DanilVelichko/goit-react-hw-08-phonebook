@@ -7,7 +7,6 @@ import Notiflix from 'notiflix';
 const Login = () => {
   const dispatch = useDispatch();
 
-
   const onFinish = ({ email, password }) => {
     dispatch(authThunk({ email, password }))
       .unwrap()

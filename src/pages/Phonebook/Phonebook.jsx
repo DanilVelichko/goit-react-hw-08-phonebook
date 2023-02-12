@@ -1,21 +1,21 @@
-import { Container } from 'components/App.styled';
-import { addFilter } from 'redux/filter/sliceFilter';
 import { useMemo } from 'react';
 import { Suspense, lazy } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+// Components
 import Form from 'components/Form/Form';
 import Filter from 'components/Filter/Filter';
+// Redux
 import { selectContacts, selectFilter } from 'redux/selectors';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  addContacts,
-  deleteContact,
-} from 'redux/contacts/operations';
+import { addFilter } from 'redux/filter/sliceFilter';
+import { addContacts, deleteContact } from 'redux/contacts/operations';
+// Services
+import { Container } from 'components/App.styled';
 
 const ContactsList = lazy(() => import('components/ContactsList/ContactsList'));
 
 const Phonebook = () => {
   const dispatch = useDispatch();
- const contacts = useSelector(selectContacts);
+  const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
 
   const formSubmitHandler = data => {
@@ -55,7 +55,10 @@ const Phonebook = () => {
       <Filter onDataUpdate={handleDataUpdate} />
 
       <Suspense fallback={<div>Loading...</div>}>
-        <ContactsList arrContacts={filteredContacts} onDeleteBtn={onDeleteBtn} />
+        <ContactsList
+          arrContacts={filteredContacts}
+          onDeleteBtn={onDeleteBtn}
+        />
       </Suspense>
     </Container>
   );

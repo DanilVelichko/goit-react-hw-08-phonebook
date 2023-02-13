@@ -28,7 +28,7 @@ const App = () => {
       dispatch(fetchContacts());
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isAuth]);
 
   return (
     <Routes>

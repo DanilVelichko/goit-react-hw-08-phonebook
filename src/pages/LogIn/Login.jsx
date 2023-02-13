@@ -10,8 +10,7 @@ const Login = () => {
   const onFinish = ({ email, password }) => {
     dispatch(authThunk({ email, password }))
       .unwrap()
-      .then(() => Notiflix.Notify.success('Login successfull!'))
-      .catch((error) => console.log(error));
+      .then(() => Notiflix.Notify.success('Login successfull!'))     
   };
 
   return (
@@ -22,7 +21,7 @@ const Login = () => {
       style={{ maxWidth: 600 }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
-           autoComplete="on"
+      autoComplete="on"
     >
       <h2 style={{ textAlign: 'center' }}>Login </h2>
       <Form.Item

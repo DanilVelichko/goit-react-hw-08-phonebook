@@ -14,7 +14,7 @@ const Registration = () => {
       password,
     })).unwrap()
       .then(() => Notiflix.Notify.success('Registration successfull!'))
-      .catch(error => console.log(error.response.data.message));
+      
   };
 
   const onFinishFailed = errorInfo => {

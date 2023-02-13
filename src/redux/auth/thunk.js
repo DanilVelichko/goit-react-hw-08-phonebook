@@ -6,6 +6,8 @@ import {
   signInUser
 } from '../../services/auth-service/auth-service';
 
+
+
 export const signUpThunk = createAsyncThunk(
   'auth/signup',
   async (payload, _) => {
@@ -23,6 +25,7 @@ export const authThunk = createAsyncThunk(
 );
 
 export const profileThunk = createAsyncThunk('auth/profile', () => {
+  
   return getProfile();
 });
 

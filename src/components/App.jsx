@@ -14,8 +14,7 @@ import PrivateRoute from './PrivateRoute/PrivateRoute';
 import { profileThunk } from 'redux/auth/thunk';
 import { selectIsAuthenticated } from 'redux/selectors';
 import { fetchContacts } from 'redux/contacts/operations';
-// Services
-import { setTokenAuth } from '../api/api';
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,7 +22,6 @@ const App = () => {
 
   useEffect(() => {
     if (isAuth) {
-      setTokenAuth(`Bearer ${isAuth}`); //поновлення токену у axios для авторизації
       dispatch(profileThunk());
       dispatch(fetchContacts());
     }

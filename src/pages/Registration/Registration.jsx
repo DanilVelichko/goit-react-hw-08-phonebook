@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form, Input } from 'antd';
 import Notiflix from 'notiflix';
 import { useDispatch } from 'react-redux';
-import { signUpThunk } from 'redux/auth/thunk';
+import { signUpThunk } from 'redux/auth/operationsAuth';
 
 const Registration = () => {
   const dispatch = useDispatch();

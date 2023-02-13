@@ -11,9 +11,9 @@ import Layout from './Layout/Layout';
 import PublicRoute from './PublicRoute/PublicRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 // Redux
-import { profileThunk } from 'redux/auth/thunk';
+import { profileThunk } from 'redux/auth/operationsAuth';
 import { selectIsAuthenticated } from 'redux/selectors';
-import { fetchContacts } from 'redux/contacts/operations';
+import { fetchContacts } from 'redux/contacts/operationsContacts';
 
 
 const App = () => {
@@ -22,8 +22,9 @@ const App = () => {
 
   useEffect(() => {
     if (isAuth) {
-       dispatch(fetchContacts());
       dispatch(profileThunk());
+      dispatch(fetchContacts());
+     
      
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,6 +1,6 @@
 import { Button, Form, Input } from 'antd';
 import { useDispatch } from 'react-redux';
-import { authThunk } from 'redux/auth/thunk';
+import { authThunk } from 'redux/auth/operationsAuth';
 import Notiflix from 'notiflix';
 
 

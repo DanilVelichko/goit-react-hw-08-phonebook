@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import { selectName } from 'redux/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIsAuthenticated } from 'redux/selectors';
-import { logOutThunk } from 'redux/auth/thunk';
+import { logOutThunk } from 'redux/auth/operationsAuth';
 import css from './Appbar.module.css';
 
 const ButtonAppBar = () => {

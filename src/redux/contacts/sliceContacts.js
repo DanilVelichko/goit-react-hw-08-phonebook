@@ -3,7 +3,7 @@ import {
   fetchContacts,
   addContacts,
   deleteContact,
-} from 'redux/contacts/operations';
+} from 'redux/contacts/operationsContacts';
 import { initialState } from './initialState';
 
 const extraActions = [fetchContacts, addContacts, deleteContact];

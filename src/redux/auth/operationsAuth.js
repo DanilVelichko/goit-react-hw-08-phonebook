@@ -5,6 +5,7 @@ import {
   logOutUser,
   signInUser
 } from '../../services/auth-service/auth-service';
+import { setTokenAuth } from '../../api/api';
 
 
 
@@ -24,8 +25,13 @@ export const authThunk = createAsyncThunk(
   }
 );
 
-export const profileThunk = createAsyncThunk('auth/profile', () => {
-  
+export const profileThunk = createAsyncThunk('auth/profile', (_, thunkAPI) => {
+   const state = thunkAPI.getState();
+    const token = state.auth.access_token;
+
+    if (token) {
+      setTokenAuth(`Bearer ${token}`);
+    } else return;
   return getProfile();
 });
 

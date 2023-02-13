@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { initialState } from './initialState';
-import { signUpThunk, authThunk, profileThunk, logOutThunk } from './thunk';
+import { signUpThunk, authThunk, profileThunk, logOutThunk } from './operationsAuth';
 import { persistConfig } from './persistConfig';
 import persistReducer from 'redux-persist/es/persistReducer';
 

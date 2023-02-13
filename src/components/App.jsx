@@ -22,8 +22,9 @@ const App = () => {
 
   useEffect(() => {
     if (isAuth) {
+       dispatch(fetchContacts());
       dispatch(profileThunk());
-      dispatch(fetchContacts());
+     
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuth]);

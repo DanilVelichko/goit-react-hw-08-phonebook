@@ -3,16 +3,21 @@ import {
   getProfile,
   loginUser,
   logOutUser,
+  signInUser
 } from '../../services/auth-service/auth-service';
-import { fetchContacts } from 'redux/contacts/operations';
+
+export const signUpThunk = createAsyncThunk(
+  'auth/signup',
+  async (payload, _) => {
+    const data = await signInUser(payload);
+    return data;
+  }
+);
 
 export const authThunk = createAsyncThunk(
   'auth/login',
-  async (payload, { dispatch }) => {
+  async (payload,_) => {
     const data = await loginUser(payload);
-    dispatch(profileThunk());
-    dispatch(fetchContacts());
-
     return data;
   }
 );

@@ -23,14 +23,14 @@ const ButtonAppBar = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {isAuth.length > 0 && (
+            {isAuth && (
               <Button href={'phonebook'} color="inherit">
                 Phonebook
               </Button>
             )}
           </Typography>
 
-          {name.length > 0 ? (
+          {name ? (
             <>
               <img
                 className={css.avatar}

@@ -1,7 +1,9 @@
 import { axiosInstance, setTokenAuth, dellTokenAuth } from '../../api/api';
 
 export const signInUser = async body => {
-  return await axiosInstance.post('/users/signup', body);
+  const { data } = await axiosInstance.post('/users/signup', body);
+  setTokenAuth(`Bearer ${data.token}`);
+  return data;
 };
 
 export const loginUser = async body => {

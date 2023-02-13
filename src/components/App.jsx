@@ -22,12 +22,11 @@ const App = () => {
   const isAuth = useSelector(selectIsAuthenticated);
 
   useEffect(() => {
-    if (isAuth.length > 0) {
-      setTokenAuth(`Bearer ${isAuth}`);
+    if (isAuth) {
+      setTokenAuth(`Bearer ${isAuth}`); //поновлення токену у axios для авторизації
       dispatch(profileThunk());
       dispatch(fetchContacts());
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

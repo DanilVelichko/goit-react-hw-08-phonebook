@@ -1,21 +1,24 @@
 import { Button, Form, Input } from 'antd';
 import { useDispatch } from 'react-redux';
 import { authThunk } from 'redux/auth/thunk';
+import {selectAuthError} from 'redux/selectors';
 import Notiflix from 'notiflix';
+import { useSelector } from 'react-redux';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const error = useSelector(selectAuthError);
 
   const onFinish = ({ email, password }) => {
     dispatch(authThunk({ email, password }))
       .unwrap()
       .then(() => Notiflix.Notify.success('Login successfull!'))
-      .catch(() => Notiflix.Notify.error('Something went wrong'));
+      .catch(() => Notiflix.Notify.error(error));
   };
 
   const onFinishFailed = errorInfo => {
     Notiflix.Notify.error('Something went wrong');
-    console.log(errorInfo);
+    console.log('ErrorInfo', errorInfo, error);
   };
 
   return (

@@ -27,7 +27,8 @@ const App = () => {
       dispatch(profileThunk());
       dispatch(fetchContacts());
     }
-  }, [isAuth, dispatch]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Routes>

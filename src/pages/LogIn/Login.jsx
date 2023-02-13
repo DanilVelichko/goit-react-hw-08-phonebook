@@ -14,11 +14,6 @@ const Login = () => {
       .catch((error) => console.log(error));
   };
 
-  const onFinishFailed = errorInfo => {
-    Notiflix.Notify.error('Something went wrong');
-    console.log('ErrorInfo', errorInfo, );
-  };
-
   return (
     <Form
       name="login"
@@ -27,8 +22,7 @@ const Login = () => {
       style={{ maxWidth: 600 }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="on"
+           autoComplete="on"
     >
       <h2 style={{ textAlign: 'center' }}>Login </h2>
       <Form.Item

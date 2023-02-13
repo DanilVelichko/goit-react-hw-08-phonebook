@@ -14,12 +14,6 @@ const Registration = () => {
       password,
     })).unwrap()
       .then(() => Notiflix.Notify.success('Registration successfull!'))
-      
-  };
-
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
-    Notiflix.Notify.error('Something went wrong');
   };
 
   return (
@@ -30,7 +24,6 @@ const Registration = () => {
       style={{ maxWidth: 600 }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
       autoComplete="on"
     >
       <h2 style={{ textAlign: 'center' }}>Registration </h2>

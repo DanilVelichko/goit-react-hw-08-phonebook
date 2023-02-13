@@ -27,7 +27,7 @@ const App = () => {
       dispatch(profileThunk());
       dispatch(fetchContacts());
     }
-  }, []);
+  }, [isAuth, dispatch]);
 
   return (
     <Routes>

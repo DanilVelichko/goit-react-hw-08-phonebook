@@ -8,12 +8,25 @@ const Registration = () => {
   const dispatch = useDispatch();
 
   const onFinish = ({ name, email, password }) => {
-    dispatch(signUpThunk({
-      name,
-      email,
-      password,
-    })).unwrap()
+    dispatch(
+      signUpThunk({
+        name,
+        email,
+        password,
+      })
+    )
+      .unwrap()
       .then(() => Notiflix.Notify.success('Registration successfull!'))
+      .catch(() => {
+        alert(
+          'Something went wrong, please check signing data, then try again.'
+        );
+      });
+  };
+
+  const onFinishFailed = errorInfo => {
+    console.log('Failed:', errorInfo);
+    Notiflix.Notify.error('Something went wrong');
   };
 
   return (
@@ -24,6 +37,7 @@ const Registration = () => {
       style={{ maxWidth: 600 }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
       autoComplete="on"
     >
       <h2 style={{ textAlign: 'center' }}>Registration </h2>

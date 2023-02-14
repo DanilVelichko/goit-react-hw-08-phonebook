@@ -3,14 +3,22 @@ import { useDispatch } from 'react-redux';
 import { authThunk } from 'redux/auth/operationsAuth';
 import Notiflix from 'notiflix';
 
-
 const Login = () => {
   const dispatch = useDispatch();
- 
+
   const onFinish = ({ email, password }) => {
     dispatch(authThunk({ email, password }))
       .unwrap()
-      .then(() => Notiflix.Notify.success('Login successfull!'))     
+      .then(() => Notiflix.Notify.success('Login successfull!'))
+      .catch(() => {
+        alert(
+          'Something went wrong, please check name and password, then try again.'
+        );
+      });
+  };
+
+  const onFinishFailed = errorInfo => {
+    console.log('ErrorInfo', errorInfo);
   };
 
   return (
@@ -21,6 +29,7 @@ const Login = () => {
       style={{ maxWidth: 600 }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
       autoComplete="on"
     >
       <h2 style={{ textAlign: 'center' }}>Login </h2>

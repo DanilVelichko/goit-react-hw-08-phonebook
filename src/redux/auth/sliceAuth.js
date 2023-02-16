@@ -26,11 +26,6 @@ const handleAuthFulfilled = (state, { payload }) => {
   state.profile.email = payload.user.email;
 };
 
-const handleError = (state, action) => {
-  state.isLoading = false;
-  state.error = action.error.message;
-};
-
 const handleProfileFulfilled = (state, { payload }) => {
   state.isLoading = false;
   state.profile.name = payload.name;
@@ -62,7 +57,7 @@ const authSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(signUpThunk.rejected, profileThunk.rejected, authThunk.rejected),
-        handleError
+        
       );
   },
 });

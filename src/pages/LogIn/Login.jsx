@@ -11,9 +11,7 @@ const Login = () => {
       .unwrap()
       .then(() => Notiflix.Notify.success('Login successfull!'))
       .catch(() => {
-        alert(
-          'Something went wrong, please check name and password, then try again.'
-        );
+       Notiflix.Notify.info('Something went wrong, please check Email and password, then try again.')
       });
   };
 

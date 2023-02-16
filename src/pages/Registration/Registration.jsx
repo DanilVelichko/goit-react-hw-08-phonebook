@@ -18,10 +18,8 @@ const Registration = () => {
       .unwrap()
       .then(() => Notiflix.Notify.success('Registration successfull!'))
       .catch(() => {
-        alert(
-          'Something went wrong, please check signing data, then try again.'
-        );
-      });
+        Notiflix.Notify.info('Something went wrong, please check signing data, then try again.')
+            });
   };
 
   const onFinishFailed = errorInfo => {
